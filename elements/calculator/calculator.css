@@ -1,1 +1,25 @@
-/*Placeholder*/
+:host {
+	/* By default elements are always display:inline. */
+	display: inline-block;
+	/* Default background theme is light colored */
+	background-color: #d0d0d0;
+}
+
+:host([theme=dark]) {
+	/* Setting the attribute 'theme="dark"' on the component applies a darker theme */
+	background-color: #101010;
+}
+
+/* Placeholders for laying out the keypad in a recognizable format */
+qfcalculator {
+	display: block;
+}
+qfcalculatorkeypad {
+	display: table;
+}
+qfcalculatorrow {
+	display: table-row;
+}
+qfcalculatorkey {
+	display: table-cell;
+}
