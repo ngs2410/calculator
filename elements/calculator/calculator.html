@@ -1,20 +1,25 @@
 <!-- Define element -->
-<polymer-element name="my-counter" attributes="counter">
+<polymer-element name="qf-calculator" attributes="theme">
   <template>
-    <style> /*...*/ </style>
+    <link rel="stylesheet" type="text/css" href="calculator.css">
     <div id="label"><content></content></div>
-    Value: <span id="counterVal">{{counter}}</span><br>
-    <button on-tap="{{increment}}">Increment</button>
+
+    <qfcalculator>
+      <!-- Build the keypad -->
+      <qfcalculatorkeypad>
+        <template repeat="{{ row in keypad }}">
+          <qfcalculatorrow>
+            <template repeat="{{ key in row }}">
+              <qfcalculatorkey>
+              <template if="{{ key !== undefined }}">
+                <button on-tap="{{keypress}}" data-key="{{key[0]}}" data-value="{{key[1]}}">{{[key[1]]}}</button>
+              </template>
+              </qfcalculatorkey>
+            </template>
+          </qfcalculatorrow>
+        </template>
+      </qfcalculatorkeypad>
+    </qfcalculator>
   </template>
-  <script>
-    Polymer({
-      counter: 0, // Default value
-      counterChanged: function() {
-        this.$.counterVal.classList.add('highlight');
-      },
-      increment: function() {
-        this.counter++;
-      }
-    });
-  </script>
+  <script src='calculator.js'></script>
 </polymer-element>
