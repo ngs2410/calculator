@@ -8,11 +8,15 @@
 :host([theme=dark]) {
 	/* Setting the attribute 'theme="dark"' on the component applies a darker theme */
 	background-color: #101010;
+	color: white;
 }
 
 /* Placeholders for laying out the keypad in a recognizable format */
 qfcalculator {
 	display: block;
+}
+qfcalculatordisplay {
+	text-align: right;
 }
 qfcalculatorkeypad {
 	display: table;
