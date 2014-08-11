@@ -5,6 +5,16 @@
     <div id="label"><content></content></div>
 
     <qfcalculator>
+      <!-- Placeholder for displaying the current operation -->
+      <p>{{oplegend}}</p>
+
+      <!-- Display the current value(s) -->
+      <qfcalculatordisplay>
+        <template repeat="{{ row in todisplay }}">
+          <p>{{row}}</p>
+        </template>
+      </qfcalculatordisplay>
+
       <!-- Build the keypad -->
       <qfcalculatorkeypad>
         <template repeat="{{ row in keypad }}">
