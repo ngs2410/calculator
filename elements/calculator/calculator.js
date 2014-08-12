@@ -33,6 +33,14 @@ var DEFAULT_DISPLAY = [ ZERO_STRING ];
 var MAX_PRECISION = 10;
 var ROWS_TO_DISPLAY = 2;
 
+function commaSeparateNumber(val){
+    var valSplit = val.toString().split('.');
+    while (/(\d+)(\d{3})/.test(valSplit[0].toString())){
+        valSplit[0] = valSplit[0].toString().replace(/(\d+)(\d{3})/, '$1'+','+'$2');
+    }
+    return valSplit.join('.');
+}
+
 Polymer({
   // This nested array defines the layout and functionality of keys on the keypad
   // Each tuple is the function of the key and the legend for that key
@@ -96,12 +104,11 @@ Polymer({
     // Here we are mapping from the internal representation of the accumulator
     // to what is going to be in the display. We need to be careful as, during
     // input, the string can be a partially formed number.
-    return accumulator.slice(0, ROWS_TO_DISPLAY).reverse().map(function (v) {
-      if (self.state === STATES.INPUT) {
-        return v;
-      } else {
-        return parseFloat(parseFloat(v).toPrecision(MAX_PRECISION));        
+    return accumulator.slice(0, ROWS_TO_DISPLAY).map(function (v) {
+      if (self.state !== STATES.INPUT) {
+        v = parseFloat(parseFloat(v).toPrecision(MAX_PRECISION));        
       }
+      return commaSeparateNumber(v);
     });
   },
   legend : function (cf) {
