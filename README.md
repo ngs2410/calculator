@@ -10,7 +10,6 @@ Test by cloning the repository and (on a Mac at least) running the following com
 Things remaining to do:
 - Improve layout of numeric display
 - Improve placement of current operation legend
-- Handle attempts to divide by zero
+- Handle attempts to divide by zero (although this doesn't break the implementation)
 - Add error message output (for sqrt of negative numbers, division by zero error or trying to enter numbers that are too long)
 - Learn whether Polymer makes it easy for me to refactor the calculator out into a separate self-contained object (is this worth it?)
-- Better handle formatting of display to account for entering numbers with trailing zeroes, e.g. 9.000005, and decimal points
