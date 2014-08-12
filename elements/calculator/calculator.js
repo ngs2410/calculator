@@ -167,6 +167,7 @@ Polymer({
           // so for now, we slice is back to 1 element and put a new value in that element.
           this.accumulator = this.accumulator.slice(0,1);
           this.accumulator[0] = ZERO_STRING;
+          this.currentOperation = undefined;
           break;
 
         default:
