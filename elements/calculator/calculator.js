@@ -68,8 +68,10 @@ Polymer({
     this.accumulator.unshift(v.toString());
   },
   newline: function () {
-    this.push(ZERO_STRING);
-    this.state = STATES.INPUT;
+    if (this.state === STATES.RESULT) {
+      this.push(ZERO_STRING);
+      this.state = STATES.INPUT;
+    }
   },
 
   // Polymer needs a helper to notice when an array (the accumulator) changes
@@ -105,8 +107,8 @@ Polymer({
       var b = this.pop();
       var c = OPERATIONS[this.currentOperation].op(a, b);
       this.push(c);
-      this.state = STATES.RESULT;
     }
+    this.state = STATES.RESULT;
   },
 
   // This function handles all keypresses
