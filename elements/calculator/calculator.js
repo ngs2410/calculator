@@ -48,10 +48,14 @@ Polymer({
   ],
 
   // This is the state the calculator is in (input or result) so we know what to do
-  // when a key is pressed.
+  // when a key is pressed. The default state is INPUT.
   state : STATES.INPUT,
 
   // The accumulator holds results from prior operations and the number being entered
+  // It is modeled as a stack with new values being unshifted onto the front
+  // The default stack is [ "0" ]. We use Strings rather than Numbers as we need to be
+  // able to enter partially formed numbers (like 9.000) without having Javascript
+  // truncate them.
   //
   accumulator: DEFAULT_DISPLAY,
 
@@ -61,8 +65,7 @@ Polymer({
     return parseFloat(this.accumulator[0]);
   },
   pop: function () {
-    var a = this.accumulator.shift();
-    return parseFloat(a);
+    return parseFloat(this.accumulator.shift());
   },
   push: function (v) {
     this.accumulator.unshift(v.toString());
@@ -85,12 +88,20 @@ Polymer({
   // data to be rendered in the templates in the view
   //
   computed: {
-    todisplay : 'sliced(accumulator, kick)',
+    display : 'sliced(accumulator, kick)',
     oplegend : 'legend(currentOperation)'
   },
   sliced: function(accumulator) {
+    var self = this;
+    // Here we are mapping from the internal representation of the accumulator
+    // to what is going to be in the display. We need to be careful as, during
+    // input, the string can be a partially formed number.
     return accumulator.slice(0, ROWS_TO_DISPLAY).reverse().map(function (v) {
-      return parseFloat(parseFloat(v).toPrecision(MAX_PRECISION));
+      if (self.state === STATES.INPUT) {
+        return v;
+      } else {
+        return parseFloat(parseFloat(v).toPrecision(MAX_PRECISION));        
+      }
     });
   },
   legend : function (cf) {
@@ -121,8 +132,10 @@ Polymer({
       // If it's a 'number' key then we add a new line if we're in the result state
       //
       this.newline();
-      this.accumulator[0] = (this.accumulator[0]) == ZERO_STRING ? value : this.accumulator[0] + value;
 
+      if (this.accumulator[0].replace('.', '').length < MAX_PRECISION) {
+        this.accumulator[0] = (this.accumulator[0]) == ZERO_STRING ? value : this.accumulator[0] + value;
+      }
     } else {
       // If it's a 'function' key then we match on the function type and carry out the operation
       //
