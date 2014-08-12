@@ -11,6 +11,7 @@ Features
 --------
 
 - A simple accumulating calculator
+- Uses Polymer with no other external dependencies
 - Supports addition, subtraction, multiplication, division and square root
 - Displays current value and prior value
 - Displays current operation
@@ -28,6 +29,7 @@ Known issues
 - Using toPrecision() to control # of decimal places is a hack, we could make this smarter and not lose precision for large numbers
 - The component assumes a US Locale and formats numbers for a US audience
 - Need access to a Windows machine to test on Internet Explorer
+- The key legends for sqrt and division could be HTML entities conforming to the conventional symbols, but Polymer kept escaping them and I couldn't quickly find out how to prevent that.
 
 Testing strategy
 ----------------
