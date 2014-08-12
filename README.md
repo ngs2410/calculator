@@ -16,13 +16,13 @@ Features
 - Displays current operation
 - Groups 000's digits
 - Supports dark and light themes via the 'theme' attribute on the component
+- Lightly tested on Chrome 36.0.1985.125, Firefox 31.0 and Safari 7.0.5 - no apparent issues
 
 Things remaining to do
 ----------------------
 
 - Handle attempts to divide by zero (although this doesn't break the implementation)
 - Add error message output (for sqrt of negative numbers, division by zero error or trying to enter numbers that are too long)
-- Check reasonable cross browser functionality
 
 Known issues
 ------------
@@ -32,6 +32,7 @@ Known issues
 - In a production component I'd separate the calculator model into it's own 'class' for abstraction, maintainability and testing
 - Using toPrecision() to control # of decimal places is a hack, we could make this smarter and not lose precision for large numbers
 - The component assumes a US Locale and formats numbers for a US audience
+- Need access to a Windows machine to test on Internet Explorer
 
 Testing strategy
 ----------------
