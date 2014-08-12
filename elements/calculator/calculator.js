@@ -124,6 +124,10 @@ Polymer({
   // when equals is pressed of another operator is invoked.
   currentOperation: undefined,
   performCurrentOperation: function () {
+    if (this.currentOperation === OPERATION_TYPES.DIV && this.examine() === 0) {
+      return this.error();
+    }
+
     if (this.currentOperation && this.accumulator.length >= 2) {
       var a = this.pop();
       var b = this.pop();
@@ -131,6 +135,16 @@ Polymer({
       this.push(c);
     }
     this.state = STATES.RESULT;
+  },
+
+  // If the user carries out an illegal operation (sqrt of a negative number for example)
+  // we, momentarily, add the error class to the display element
+  error: function () {
+    var self = this;
+    this.$.qfCalculatorDisplay.classList.add('error');
+    setTimeout(function () {
+      self.$.qfCalculatorDisplay.classList.remove('error');
+    }, 500);
   },
 
   // This function handles all keypresses
@@ -146,6 +160,8 @@ Polymer({
 
       if (this.accumulator[0].replace('.', '').length < MAX_PRECISION) {
         this.accumulator[0] = (this.accumulator[0]) == ZERO_STRING ? value : this.accumulator[0] + value;
+      } else {
+        this.error();
       }
     } else {
       // If it's a 'function' key then we match on the function type and carry out the operation
@@ -183,6 +199,8 @@ Polymer({
           if (this.examine() >= 0) {
             this.push(Math.sqrt(this.pop()));
             this.state = STATES.RESULT;
+          } else {
+            this.error();
           }
           break;
 

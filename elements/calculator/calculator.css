@@ -27,6 +27,11 @@ qfcalculatordisplay {
 	margin: 0 0 3px 0;
 }
 
+qfcalculatordisplay.error,
+:host([theme=dark]) qfcalculatordisplay.error {
+	background-color: red;
+}
+
 :host([theme=dark]) qfcalculatordisplay {
 	background-color: #404040;
 }
