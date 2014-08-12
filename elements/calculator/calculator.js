@@ -41,7 +41,7 @@ Polymer({
     [ [KEY_TYPES.NUM, '7'],  [KEY_TYPES.NUM, '8'], [KEY_TYPES.NUM, '9'] ],
     [ [KEY_TYPES.NUM, '4'],  [KEY_TYPES.NUM, '5'], [KEY_TYPES.NUM, '6'] ],
     [ [KEY_TYPES.NUM, '1'],  [KEY_TYPES.NUM, '2'], [KEY_TYPES.NUM, '3'] ],
-    [ undefined,             [KEY_TYPES.NUM, '0'], undefined ],
+    [ [KEY_TYPES.DOT, '.'],  [KEY_TYPES.NUM, '0'], undefined ],
     [ [KEY_TYPES.ADD, '+'],  [KEY_TYPES.SUB, '-'], [KEY_TYPES.SQRT, 'SQRT'] ],
     [ [KEY_TYPES.MUL, 'x'],  [KEY_TYPES.DIV, '/'], [KEY_TYPES.CLR, 'CLR'] ],
     [ undefined,             [KEY_TYPES.EQL, '='], undefined ]
@@ -120,13 +120,20 @@ Polymer({
     if (keyType === KEY_TYPES.NUM) {
       // If it's a 'number' key then we add a new line if we're in the result state
       //
-      if (this.state === STATES.RESULT) this.newline();
+      this.newline();
       this.accumulator[0] = (this.accumulator[0]) == ZERO_STRING ? value : this.accumulator[0] + value;
 
     } else {
       // If it's a 'function' key then we match on the function type and carry out the operation
       //
       switch (keyType) {
+        case KEY_TYPES.DOT:
+          this.newline();
+          if (this.accumulator[0].indexOf('.') === -1) {
+            this.accumulator[0] = this.accumulator[0] + '.';            
+          }
+          break;
+
         case KEY_TYPES.ADD:
         case KEY_TYPES.SUB:
         case KEY_TYPES.MUL:
