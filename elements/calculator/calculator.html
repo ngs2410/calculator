@@ -5,14 +5,22 @@
     <div id="label"><content></content></div>
 
     <qfcalculator>
-      <!-- Placeholder for displaying the current operation -->
-      <p>{{oplegend}}</p>
-
-      <!-- Display the current value(s) -->
       <qfcalculatordisplay>
-        <template repeat="{{ row in display }}">
-          <p>{{row}}</p>
-        </template>
+        <!-- Display the current operation -->
+        <qfcalculatoroperationlegend>
+          {{oplegend}}
+        </qfcalculatoroperationlegend>
+        <!-- Display the current accumulator value(s) -->
+        <qfcalculatoraccumulatordisplay>
+          <qfcalculatoraccumulatordisplayrow class="history">
+            <template if="{{ display.length > 1 }}">
+              {{display[1]}}
+            </template>
+          </qfcalculatoraccumulatordisplayrow>
+          <qfcalculatoraccumulatordisplayrow>
+            {{display[0]}}
+          </qfcalculatoraccumulatordisplayrow>
+        </qfcalculatoraccumulatordisplay>
       </qfcalculatordisplay>
 
       <!-- Build the keypad -->
