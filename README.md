@@ -16,13 +16,8 @@ Features
 - Displays current operation
 - Groups 000's digits
 - Supports dark and light themes via the 'theme' attribute on the component
+- Indicates error when dividing by zero, taking the square root of a negative number of entering too many digits
 - Lightly tested on Chrome 36.0.1985.125, Firefox 31.0 and Safari 7.0.5 - no apparent issues
-
-Things remaining to do
-----------------------
-
-- Handle attempts to divide by zero (although this doesn't break the implementation)
-- Add error message output (for sqrt of negative numbers, division by zero error or trying to enter numbers that are too long)
 
 Known issues
 ------------
