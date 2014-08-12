@@ -30,7 +30,7 @@ var STATES = {
 
 var ZERO_STRING = "0";
 var DEFAULT_DISPLAY = [ ZERO_STRING ];
-var MAX_PRECISION = 10;
+var MAX_PRECISION = 12;
 var ROWS_TO_DISPLAY = 2;
 
 function commaSeparateNumber(val){
@@ -46,13 +46,10 @@ Polymer({
   // Each tuple is the function of the key and the legend for that key
   // 'undefined' places an empty space in the layout
   keypad : [
-    [ [KEY_TYPES.NUM, '7'],  [KEY_TYPES.NUM, '8'], [KEY_TYPES.NUM, '9'] ],
-    [ [KEY_TYPES.NUM, '4'],  [KEY_TYPES.NUM, '5'], [KEY_TYPES.NUM, '6'] ],
-    [ [KEY_TYPES.NUM, '1'],  [KEY_TYPES.NUM, '2'], [KEY_TYPES.NUM, '3'] ],
-    [ [KEY_TYPES.DOT, '.'],  [KEY_TYPES.NUM, '0'], undefined ],
-    [ [KEY_TYPES.ADD, '+'],  [KEY_TYPES.SUB, '-'], [KEY_TYPES.SQRT, 'SQRT'] ],
-    [ [KEY_TYPES.MUL, 'x'],  [KEY_TYPES.DIV, '/'], [KEY_TYPES.CLR, 'CLR'] ],
-    [ undefined,             [KEY_TYPES.EQL, '='], undefined ]
+    [ [KEY_TYPES.NUM, '7'],  [KEY_TYPES.NUM, '8'], [KEY_TYPES.NUM, '9'], [KEY_TYPES.DIV, '/'], undefined ],
+    [ [KEY_TYPES.NUM, '4'],  [KEY_TYPES.NUM, '5'], [KEY_TYPES.NUM, '6'], [KEY_TYPES.MUL, 'x'], undefined ],
+    [ [KEY_TYPES.NUM, '1'],  [KEY_TYPES.NUM, '2'], [KEY_TYPES.NUM, '3'], [KEY_TYPES.SUB, '-'], [KEY_TYPES.SQRT, 'SQRT'] ],
+    [ [KEY_TYPES.DOT, '.'],  [KEY_TYPES.NUM, '0'], [KEY_TYPES.EQL, '='], [KEY_TYPES.ADD, '+'], [KEY_TYPES.CLR, 'CLR'] ]
   ],
 
   // This is the state the calculator is in (input or result) so we know what to do
