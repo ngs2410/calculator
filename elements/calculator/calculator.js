@@ -1,11 +1,19 @@
+// These constants define the binary operations we can carry out
+var OPERATION_TYPES = {
+  ADD : 'add',
+  SUB : 'sub',
+  MUL : 'mul',
+  DIV : 'div'  
+}
+
 // These constants define the kinds of keys that we recognize in the keypad
 var KEY_TYPES = {
   NUM : 'num',
   DOT : 'dot',
-  ADD : 'add',
-  SUB : 'sub',
-  MUL : 'mul',
-  DIV : 'div',
+  ADD : OPERATION_TYPES.ADD,
+  SUB : OPERATION_TYPES.SUB,
+  MUL : OPERATION_TYPES.MUL,
+  DIV : OPERATION_TYPES.DIV,
   SQRT : 'sqrt',
   CLR : 'clr',
   EQL : 'eql',
@@ -13,12 +21,11 @@ var KEY_TYPES = {
 
 // Here we map from the currentOperation to the legend that we would use for that operation
 // and the function that the operation carries out
-var OPERATIONS = {
-  add : { legend : '+', op: function(a,b) { return b+a } },
-  sub : { legend : '-', op: function(a,b) { return b-a } },
-  mul : { legend : 'x', op: function(a,b) { return b*a } },
-  div : { legend : '/', op: function(a,b) { return b/a } }
-}
+var OPERATIONS = {}
+OPERATIONS[OPERATION_TYPES.ADD] = { legend : '+', op: function(a,b) { return b+a } };
+OPERATIONS[OPERATION_TYPES.SUB] = { legend : '-', op: function(a,b) { return b-a } };
+OPERATIONS[OPERATION_TYPES.MUL] = { legend : 'x', op: function(a,b) { return b*a } };
+OPERATIONS[OPERATION_TYPES.DIV] = { legend : '/', op: function(a,b) { return b/a } };
 
 // By convention real world calculators have rules to determine when a number key press extends
 // the currently displayed number or starts a new number - we need to model that and use these
