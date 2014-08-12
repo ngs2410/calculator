@@ -16,7 +16,7 @@ Features
 - Displays current operation
 - Groups 000's digits
 - Supports dark and light themes via the 'theme' attribute on the component
-- Indicates error when dividing by zero, taking the square root of a negative number of entering too many digits
+- Indicates error when dividing by zero, taking the square root of a negative number or entering too many digits
 - Lightly tested on Chrome 36.0.1985.125, Firefox 31.0 and Safari 7.0.5 - no apparent issues
 
 Known issues
@@ -38,5 +38,5 @@ with keypress inputs, and accumulator, error and current operation outputs. I'd 
 that takes a list of keypresses and an expected state for each of the outputs. I'd then write a sequence of tests
 using that function to cover all the basic operations, edge cases and expected errors.
 
-In the past I've used mocha to automate nearly 3,000 tests against a large node.js code base including REST APIs,
+In the past I've used mocha to automate nearly 4,000 tests against a large node.js code base including REST APIs,
 core code and database interactions.
